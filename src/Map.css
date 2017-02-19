@@ -1,0 +1,21 @@
+.edb-map {
+  height: 500px;
+}
+
+.edb-map__marker {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 5px solid #f44336;
+  border-radius: 25px;
+  background-color: white;
+  text-align: center;
+  color: #3f51b5;
+  padding: 4px;
+  transform: translate(-50%, -50%);
+}
+
+.greatPlaceStyleHover {
+border: 5px solid #3f51b5;
+  color: #f44336
+}
