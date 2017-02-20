@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import './Map.css';
 
-const Marker = ({ text, $hover, zIndex }) => {
+const Marker = ({ text, $hover, zIndex, seoName }) => {
   
   const markerClass = classNames({
     'edb-map__marker': true,
@@ -14,7 +14,7 @@ const Marker = ({ text, $hover, zIndex }) => {
     zIndex: $hover ? 1000 : zIndex
   };
 
-  return (<div className={markerClass} style={style}>{text}</div>)
+  return (<div className={markerClass} style={style}><Link to={seoName}>{text}</Link></div>)
 }
 
 export default class Map extends Component {
@@ -25,7 +25,7 @@ export default class Map extends Component {
 
   render() {
 
-    const markers = this.props.data.map( (m, index) => <Marker key={index} lat={m.address.lat} lng={m.address.lng} text={m.name} zIndex={index} /> );
+    const markers = this.props.data.map( (m, index) => <Marker key={index} seoName={m.seoName} lat={m.address.lat} lng={m.address.lng} text={m.name} zIndex={index} /> );
 
     return (
       <div className='edb-map'>

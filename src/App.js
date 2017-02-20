@@ -1,55 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { filterByCuisine } from './actions/marker-actions';
 
-import Map from './Map';
+import Map from './components/map/Map';
+import MarkerList from './components/marker-list/marker-list';
+
 
 import logo from './logo.svg';
 import './App.css';
+import './index.css';
 
 
 class App extends Component {
-
-
   render() {
-
-    // store.subscribe(() => {
-    //   console.log('store changed');
-    //   console.log(store.getState());
-    // });
-
-    // store.dispatch({ type: 'DO_SOMETHING', payload: 'hello' });
-    
 
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2 onClick={this.props.filterData}>Welcome to React</h2>
         </div>
-        
-        <Map data={this.props.markers} />
+        <main>
+          <div className="map-list-wrapper">
+          <Map data={this.props.markers} />
+          <MarkerList data={this.props.markers} />
+          </div>
+        </main>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    markers: state.markers
+
+// filter results based on cuisine and tags
+const getVisibleMarkers = (markers, match) => {
+  console.log(match.params.seoName);
+  return markers;
+};
+
+const mapStateToProps = (state, { match }) => ({
+  markers: getVisibleMarkers(state.markers, match)
+
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  filterData() {
+    dispatch(filterByCuisine())
   }
-}
+});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    filterData: () => {
-      dispatch({
-        type: 'DO_SOMETHING',
-        payload: ''
-      })
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
