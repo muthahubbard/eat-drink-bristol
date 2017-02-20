@@ -8,18 +8,18 @@ const Marker = ({ text, $hover, zIndex, seoName, test }) => {
   
   const markerClass = classNames({
     'edb-map__marker': true,
-    'greatPlaceStyleHover': $hover,
-    'greatPlaceStyleHover': test === zIndex
+    'greatPlaceStyleHover': $hover || test === zIndex
+    //'greatPlaceStyleHover': test === zIndex
   });
   let style = {
     zIndex: $hover ? 1000 : zIndex
   };
 
-  if(test === zIndex) {
-    style = {
-      zIndex:  1000
-    };
-  }
+  // if(test === zIndex) {
+  //   style = {
+  //     zIndex:  1000
+  //   };
+  // }
   
   console.log(`${test} === ${zIndex}`);
   console.log(style);
