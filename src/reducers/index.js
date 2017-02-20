@@ -3,7 +3,7 @@ import markersReducer from './markers-reducer';
 
 const reducers = combineReducers(
   {
-    markers: markersReducer
+    mapData: markersReducer
   }
 );
 

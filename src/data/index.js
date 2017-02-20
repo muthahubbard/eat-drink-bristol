@@ -62,7 +62,8 @@ const data = [
       type: types.resuarant.name,
       cuisines: [ cuisine.burgers.name ],
       tags: []
-    }
+    },
+    
   },
   {
     name: 'The Ox',

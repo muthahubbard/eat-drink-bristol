@@ -1,9 +1,16 @@
 import data from '../data';
-import Immutable from 'immutable';
 
-const defaultState = Immutable.fromJS( data );
+const defaultState = {
+  markers: data,
+  hoveredRowIndex: -1
+};
 
-const markersReducer = (state = defaultState.toJS(), action) => {
+const markersReducer = (state = defaultState, action) => {
+
+  if(action.type === 'DO_SOMETHING') {
+    return Object.assign({}, state, {hoveredRowIndex: 2});
+  }
+
   return state;
 };
 

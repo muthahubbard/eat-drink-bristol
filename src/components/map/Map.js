@@ -4,15 +4,26 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import './Map.css';
 
-const Marker = ({ text, $hover, zIndex, seoName }) => {
+const Marker = ({ text, $hover, zIndex, seoName, test }) => {
   
   const markerClass = classNames({
     'edb-map__marker': true,
-    'greatPlaceStyleHover': $hover
+    'greatPlaceStyleHover': $hover,
+    'greatPlaceStyleHover': test === zIndex
   });
-  const style = {
+  let style = {
     zIndex: $hover ? 1000 : zIndex
   };
+
+  if(test === zIndex) {
+    style = {
+      zIndex:  1000
+    };
+  }
+  
+  console.log(`${test} === ${zIndex}`);
+  console.log(style);
+
 
   return (<div className={markerClass} style={style}><Link to={seoName}>{text}</Link></div>)
 }
@@ -25,7 +36,8 @@ export default class Map extends Component {
 
   render() {
 
-    const markers = this.props.data.map( (m, index) => <Marker key={index} seoName={m.seoName} lat={m.address.lat} lng={m.address.lng} text={m.name} zIndex={index} /> );
+
+    const markers = this.props.data.map( (m, index) => <Marker test={this.props.test} key={index} seoName={m.seoName} lat={m.address.lat} lng={m.address.lng} text={m.name} zIndex={index} /> );
 
     return (
       <div className='edb-map'>

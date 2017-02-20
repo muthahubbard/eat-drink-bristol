@@ -23,8 +23,8 @@ class App extends Component {
         </div>
         <main>
           <div className="map-list-wrapper">
-          <Map data={this.props.markers} />
-          <MarkerList data={this.props.markers} />
+          <Map data={this.props.mapData.markers} test={this.props.mapData.hoveredRowIndex} />
+          <MarkerList data={this.props.mapData.markers} />
           </div>
         </main>
       </div>
@@ -40,7 +40,7 @@ const getVisibleMarkers = (markers, match) => {
 };
 
 const mapStateToProps = (state, { match }) => ({
-  markers: getVisibleMarkers(state.markers, match)
+  mapData: getVisibleMarkers(state.mapData, match)
 
 });
 
