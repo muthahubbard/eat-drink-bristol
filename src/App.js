@@ -7,7 +7,7 @@ import Map from './components/map/Map';
 import MarkerList from './components/marker-list/marker-list';
 
 
-import logo from './logo.svg';
+import logo from './img/eatdrinkbristol.svg';
 import './App.css';
 import './index.css';
 
